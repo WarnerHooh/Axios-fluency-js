@@ -8,12 +8,18 @@ export default class UserService extends FluentHttp {
     super(axios);
   }
 
+  @Loading(false)
+  @GET('/health')
+  healthCheck() {
+  }
+
   @Loading(true)
   @GET('/users')
   fetchUsers() {
   }
 
-  @Loading(false)
+
+  @Loading(true)
   @DELETE('/user/:id')
   deleteUser(@Path('id') id, @Query('gender') gender) {
   }

@@ -4,7 +4,7 @@
       <h3>Users: </h3>
       <div v-for="user of users" :key="user.id">
         <span>{{user.name}} - {{user.gender}}</span>
-        <i class="icon el-icon-delete" @click="deleteUser(user.id)"></i>
+        <i class="icon el-icon-delete" @click="deleteUser(user)"></i>
       </div>
     </div>
 
@@ -47,10 +47,27 @@ export default {
   },
 
   created() {
+    this.healthCheck();
     this.fetchUsers();
   },
 
   methods: {
+    @Convoy
+    healthCheck() {
+      return userService.healthCheck()
+        .then((resp) => {
+          console.log(resp)
+        }, (error) => {
+          // console.log('I just want to catch the 403 error, throw the others out!');
+
+          if (error.response && error.response.status === 403) {
+            console.info(' ---- Forbidden ---- ');
+          } else {
+            throw error;
+          }
+        });
+    },
+
     @Convoy
     fetchUsers() {
       return userService.fetchUsers()
@@ -59,14 +76,10 @@ export default {
         });
     },
 
-    deleteUser(id) {
-      return userService.deleteUser(id, 'male')
+    deleteUser(user) {
+      return userService.deleteUser(user.id, user.gender)
         .then((resp) => {
           console.log(resp);
-        })
-        .catch(error => {
-          console.log(error);
-          console.log('I want to handle the error by myself.');
         });
     },
 
@@ -82,22 +95,11 @@ export default {
     // ASYNC CALL
     @Convoy
     async createUser() {
-      try {
-        const data = await userService.createUser({
-          name: this.name,
-          gender: this.gender
-        });
-        console.log(data)
-      } catch (error) {
-        console.log('I just want to catch the 403 error, throw the others out!');
-
-        if (error.response && error.response.status === '403') {
-          console.error('Forbidden');
-          return;
-        }
-
-        throw error;
-      }
+      const data = await userService.createUser({
+        name: this.name,
+        gender: this.gender
+      });
+      console.log(data)
     }
   }
 }

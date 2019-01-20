@@ -1,4 +1,13 @@
 - request:
+    url: ^/health$
+    method: GET
+  response:
+  - status: 403
+    headers:
+      content-type: application/json
+      server: stubbedServer/4.2
+
+- request:
     url: ^/users$
     method: GET
   response:
