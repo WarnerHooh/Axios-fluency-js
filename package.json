@@ -1,22 +1,31 @@
 {
-  "name": "axios-spike",
+  "name": "axios-fluency-js",
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "mock": "stubby -d mock/**/*.yml",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "babel-plugin-parameter-decorator": "^1.0.3",
+    "element-ui": "^2.4.11",
     "vue": "^2.5.21"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/plugin-proposal-decorators": "^7.2.3",
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-plugin-eslint": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
     "babel-eslint": "^10.0.1",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "^5.8.0",
+    "stubby": "^4.0.0",
     "eslint-plugin-vue": "^5.0.0",
+    "query-string": "^6.2.0",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
