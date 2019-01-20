@@ -1,7 +1,31 @@
 <template>
-  <div class="hello">
-    <div v-for="user of users" :key="user.id">
-      {{user.name}} - {{user.gender}}
+  <div class="user-container">
+    <div class="users">
+      <h3>Users: </h3>
+      <div v-for="user of users" :key="user.id">
+        <span>{{user.name}} - {{user.gender}}</span>
+        <i class="icon el-icon-delete" @click="deleteUser(user.id)"></i>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="user-create">
+      <h3>User create: </h3>
+      <div class="row">
+        <label for="name">Name: </label>
+        <el-input id="name" type="text" v-model="name" />
+      </div>
+
+      <div class="row">
+        <label>Gender: </label>
+        <el-radio v-model="gender" label="male">Male</el-radio>
+        <el-radio v-model="gender" label="female">Female</el-radio>
+      </div>
+
+      <div class="row">
+        <el-button class="create-btn" type="default" @click="createUser">Submit</el-button>
+      </div>
     </div>
   </div>
 </template>
@@ -13,9 +37,12 @@ import {Convoy} from '../utils/axios';
 const userService = new UserService();
 
 export default {
+
   data() {
     return {
-      users: []
+      name: '',
+      gender: '',
+      users: [],
     }
   },
 
@@ -24,7 +51,7 @@ export default {
   },
 
   methods: {
-    // @Convoy
+    @Convoy
     fetchUsers() {
       return userService.fetchUsers()
         .then((resp) => {
@@ -33,7 +60,7 @@ export default {
     },
 
     deleteUser(id) {
-      return userService.deleteUser(id, Gender.MALE)
+      return userService.deleteUser(id, 'male')
         .then((resp) => {
           console.log(resp);
         })
@@ -53,7 +80,7 @@ export default {
     // },
 
     // ASYNC CALL
-    // @Convoy
+    @Convoy
     async createUser() {
       try {
         const data = await userService.createUser({
@@ -78,21 +105,38 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
+  .user-container {
+    text-align: left;
+  }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  .icon {
+    margin-left: 20px;
+    cursor: pointer;
+  }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+  hr {
+    margin: 20px 0;
+  }
 
-a {
-  color: #42b983;
-}
+  .user-create {
+    width: 400px;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  label {
+    flex: 1;
+  }
+
+  .el-input {
+    flex: 4;
+  }
+
+  .create-btn {
+    width: 100%;
+  }
 </style>
