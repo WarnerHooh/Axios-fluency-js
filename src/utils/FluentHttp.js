@@ -1,8 +1,9 @@
+import axios from './axios';
 const queryString = require('query-string');
 
 export class FluentHttp {
-  constructor(axios) {
-    this.axios = axios
+  constructor(http) {
+    this.axios = http || axios;
   }
 }
 

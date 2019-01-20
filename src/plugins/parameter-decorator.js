@@ -12,7 +12,6 @@ module.exports = function ({types}) {
           .slice()
           .forEach(function (param) {
             const name = param.node.name;
-            const paramUidName = path.scope.generateUidIdentifier(name).name;
 
             let resultantDecorator;
 
@@ -38,7 +37,7 @@ module.exports = function ({types}) {
               });
 
             if (resultantDecorator) {
-              param.replaceWith(types.Identifier(paramUidName));
+              param.replaceWith(types.Identifier(name));
             }
           });
 

@@ -3,6 +3,10 @@ import App from './App.vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 
+// require('./lab/DecoratedClass')
+// require('./lab/DecoratedProperty')
+// require('./lab/DecoratedParameter')
+
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false
