@@ -1,7 +1,7 @@
-import {Body, DELETE, FluentHttp, GET, Header, Path, POST, Query, Headers, RequestOptions} from '../utils/FluentHttp';
+import {Body, DELETE, ElegantHttp, GET, Header, Path, POST, Query, Headers, RequestOptions} from '../utils/ElegantHttp';
 import Loading from '@/utils/Loading';
 
-export default class UserService extends FluentHttp {
+export default class UserService extends ElegantHttp {
 
   @Loading(false)
   @GET('/health')

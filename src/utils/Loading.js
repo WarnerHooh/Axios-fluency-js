@@ -1,4 +1,4 @@
-import {RequestOptions} from './FluentHttp';
+import {RequestOptions} from './ElegantHttp';
 
 const POLLING = '_polling';
 

@@ -1,7 +1,7 @@
 import axios from './axios';
 const queryString = require('query-string');
 
-export class FluentHttp {
+export class ElegantHttp {
   constructor(http) {
     this.axios = http || axios;
   }
