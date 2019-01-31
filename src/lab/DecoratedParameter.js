@@ -22,7 +22,6 @@ function Validate(value) {
           throw new Error(`${metadata.key} is required`);
         }
       });
-      debugger
 
       return fn.apply(target, args)
     };

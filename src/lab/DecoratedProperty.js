@@ -4,6 +4,8 @@ function Bar(value) {
 
     descriptor.value = function(...args) {
       console.log(value);
+      console.log(property)
+      // fn.call(this);
     };
 
     return descriptor;

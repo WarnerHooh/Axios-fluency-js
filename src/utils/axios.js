@@ -39,7 +39,6 @@ export function Convoy(target, name, descriptor) {
   const fn = descriptor.value;
 
   descriptor.value = function (...args) {
-    // Call with `this` instead of `target` since VUE proxy
     const promise = fn.call(this, ...args);
 
     if (promise && 'then' in promise) {
