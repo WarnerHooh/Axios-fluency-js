@@ -8,7 +8,6 @@ export default class UserService extends ElegantHttp {
   healthCheck() {
   }
 
-  @Loading(false)
   @GET('/users')
   fetchUsers() {
   }

@@ -5,7 +5,7 @@ let loadingInstance = null;
 let loadingCounter = 0;
 
 export function loadingFlux(config) {
-  if (!ignoreLoading(config.url)) {
+  if (!ignoreLoading(config)) {
     loadingInstance = Loading.service({
       text: 'Loading...',
     });
@@ -14,7 +14,7 @@ export function loadingFlux(config) {
 }
 
 export function loadingReflux(response) {
-  if (!ignoreLoading(response.request.responseURL)) {
+  if (!ignoreLoading(response.config)) {
     loadingCounter--;
   }
 

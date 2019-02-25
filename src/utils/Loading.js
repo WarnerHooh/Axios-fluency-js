@@ -1,10 +1,10 @@
-import {RequestOptions} from './ElegantHttp';
+import {Headers} from './ElegantHttp';
 
-const POLLING = '_polling';
+const LOADING = 'X-LOADING';
 
-export default function (enable = true, polling = POLLING) {
+export default function (enable = true) {
   if (!enable) {
-    return RequestOptions({params: {[polling]: 'true'}});
+    return Headers({[LOADING]: false});
   }
 
   return function (target, method, descriptor) {
@@ -12,7 +12,6 @@ export default function (enable = true, polling = POLLING) {
   };
 };
 
-export function ignoreLoading(url = '') {
-  const regExp = new RegExp(`(\\?|&)${POLLING}=true`);
-  return regExp.test(url);
+export function ignoreLoading(config) {
+  return config.headers[LOADING] === false
 }

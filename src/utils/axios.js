@@ -21,7 +21,7 @@ axios.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
   console.log(error.response);
-  loadingReflux(error.response);
+  loadingReflux(error);
 
   if (error.response.status === HttpStatus.UNAUTHORIZED) {
     console.error('401 Unauthorized');
